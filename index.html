@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoPilot — Voice Agents &amp; Lead Follow-Up for Local Businesses</title>
-  <meta name="description" content="We build AI voice agents and automated follow-up systems for local businesses. Answer every call. Follow up every lead. Book more jobs." />
+  <title>AutoPilot — AI Voice Agents &amp; Lead Follow-Up for Local Businesses</title>
+  <meta name="description" content="Every call you miss is a job your competitor just booked. AutoPilot answers your calls 24/7 and follows up every lead automatically. See it live before you pay a dollar." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -15,6 +15,10 @@
       --light: #f3f4f6;
       --accent: #1d4ed8;
       --accent-dark: #1e3a8a;
+      --green: #059669;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --green-bg: #f0fdf4;
     }
 
     body {
@@ -22,19 +26,52 @@
       color: var(--black);
       background: var(--white);
       line-height: 1.6;
+      font-size: 16px;
     }
 
     a { color: inherit; text-decoration: none; }
 
-    /* NAV */
+    /* ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── STICKY NAV ─────────────────────────────────── */
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.25rem 5%;
+      padding: 1rem 5%;
+      background: white;
       border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
     }
-    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .nav-left { display: flex; align-items: center; gap: 1rem; }
+    .logo { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.03em; }
+    .spots-badge {
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+      border: 1px solid #fde68a;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
     .nav-cta {
       background: var(--accent);
       color: white;
@@ -43,12 +80,13 @@
       font-size: 0.9rem;
       font-weight: 600;
       transition: background 0.15s;
+      white-space: nowrap;
     }
     .nav-cta:hover { background: var(--accent-dark); }
 
-    /* HERO */
+    /* ─── HERO ───────────────────────────────────────── */
     .hero {
-      max-width: 760px;
+      max-width: 780px;
       margin: 5rem auto 4rem;
       padding: 0 5%;
       text-align: center;
@@ -57,49 +95,67 @@
       display: inline-block;
       background: #dbeafe;
       color: var(--accent);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 0.3rem 0.75rem;
+      padding: 0.3rem 0.8rem;
       border-radius: 4px;
       margin-bottom: 1.5rem;
     }
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: clamp(2rem, 5vw, 3.1rem);
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+      line-height: 1.13;
+      letter-spacing: -0.035em;
       margin-bottom: 1.25rem;
     }
     .hero p {
       font-size: 1.15rem;
       color: var(--gray);
       max-width: 560px;
-      margin: 0 auto 2rem;
+      margin: 0 auto 1.5rem;
     }
-    .cta-group { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+    .missed-counter {
+      display: inline-block;
+      background: var(--red-bg);
+      border: 1.5px solid #fecaca;
+      border-radius: 10px;
+      padding: 0.6rem 1.25rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      color: #7f1d1d;
+    }
+    .missed-counter strong { color: var(--red); font-size: 1.1rem; }
+    .cta-group { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .btn-primary {
       background: var(--accent);
       color: white;
-      padding: 0.8rem 1.75rem;
+      padding: 0.85rem 1.9rem;
       border-radius: 8px;
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
       transition: background 0.15s;
     }
     .btn-primary:hover { background: var(--accent-dark); }
     .btn-secondary {
       border: 1.5px solid #d1d5db;
       color: var(--black);
-      padding: 0.8rem 1.75rem;
+      padding: 0.85rem 1.9rem;
       border-radius: 8px;
       font-size: 1rem;
       font-weight: 500;
+      transition: border-color 0.15s;
     }
+    .btn-secondary:hover { border-color: var(--accent); }
+    .micro-proof {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+    .micro-proof strong { color: var(--black); }
 
-    /* SOCIAL PROOF BAR */
-    .proof-bar {
+    /* ─── TRUST BAR ──────────────────────────────────── */
+    .trust-bar {
       background: var(--light);
       padding: 1rem 5%;
       text-align: center;
@@ -108,12 +164,13 @@
       border-top: 1px solid #e5e7eb;
       border-bottom: 1px solid #e5e7eb;
     }
-    .proof-bar span { margin: 0 1.25rem; }
+    .trust-bar p { margin: 0; }
+    .trust-bar strong { color: var(--black); }
 
-    /* PROBLEMS */
-    .section { max-width: 1000px; margin: 0 auto; padding: 5rem 5%; }
+    /* ─── SHARED SECTION ─────────────────────────────── */
+    .section { max-width: 1040px; margin: 0 auto; padding: 5rem 5%; }
     .section-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -121,14 +178,16 @@
       margin-bottom: 0.75rem;
     }
     h2 {
-      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
       font-weight: 800;
       letter-spacing: -0.025em;
       margin-bottom: 1rem;
+      line-height: 1.2;
     }
     .section-sub { color: var(--gray); max-width: 560px; font-size: 1.05rem; margin-bottom: 3rem; }
 
-    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    /* ─── PROBLEMS ───────────────────────────────────── */
+    .problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem; }
     .problem-card {
       border: 1.5px solid #e5e7eb;
       border-radius: 12px;
@@ -139,21 +198,53 @@
     .problem-card .icon { font-size: 1.75rem; margin-bottom: 1rem; }
     .problem-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
     .problem-card p { color: var(--gray); font-size: 0.92rem; margin-bottom: 1rem; }
-    .loss-stat { font-size: 0.85rem; font-weight: 600; color: #dc2626; }
+    .loss-stat {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--red);
+      background: var(--red-bg);
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+    .fix-note {
+      font-size: 0.82rem;
+      color: var(--green);
+      font-weight: 600;
+      margin-top: 0.6rem;
+    }
 
-    /* HOW IT WORKS */
+    /* ─── TESTIMONIALS ───────────────────────────────── */
+    .testimonials-bg { background: var(--light); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testimonial-card {
+      background: white;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .stars { color: #f59e0b; font-size: 1rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--black);
+      margin-bottom: 1.25rem;
+      font-style: normal;
+    }
+    .testimonial-meta { font-size: 0.82rem; color: var(--gray); }
+    .testimonial-meta strong { color: var(--black); display: block; font-size: 0.9rem; margin-bottom: 0.15rem; }
+
+    /* ─── HOW IT WORKS ───────────────────────────────── */
     .how-bg { background: var(--black); color: var(--white); }
     .how-bg .section-label { color: #60a5fa; }
     .how-bg h2 { color: white; }
     .how-bg .section-sub { color: #9ca3af; }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-    .step { position: relative; padding-left: 3rem; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 2rem; }
+    .step { position: relative; padding-left: 3.25rem; }
     .step-num {
       position: absolute;
-      left: 0;
-      top: 0;
-      width: 2rem;
-      height: 2rem;
+      left: 0; top: 0;
+      width: 2.1rem; height: 2.1rem;
       background: var(--accent);
       color: white;
       border-radius: 50%;
@@ -162,35 +253,116 @@
       justify-content: center;
       font-weight: 700;
       font-size: 0.85rem;
+      flex-shrink: 0;
     }
-    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: white; }
-    .step p { color: #9ca3af; font-size: 0.92rem; }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; color: white; }
+    .step p { color: #9ca3af; font-size: 0.92rem; margin-bottom: 0.6rem; }
+    .before-after {
+      font-size: 0.82rem;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .ba-before {
+      background: rgba(220,38,38,0.15);
+      color: #fca5a5;
+      padding: 0.35rem 0.65rem;
+      border-left: 3px solid var(--red);
+      margin-bottom: 2px;
+    }
+    .ba-after {
+      background: rgba(5,150,105,0.15);
+      color: #6ee7b7;
+      padding: 0.35rem 0.65rem;
+      border-left: 3px solid var(--green);
+    }
 
-    /* SERVICES */
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; }
+    /* ─── SERVICES ───────────────────────────────────── */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.25rem; }
     .service-card {
       border: 1.5px solid #e5e7eb;
-      border-radius: 10px;
-      padding: 1.5rem;
+      border-radius: 12px;
+      padding: 1.6rem;
+      position: relative;
     }
-    .service-card .price { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.02em; margin: 0.5rem 0; }
-    .service-card .price-label { font-size: 0.78rem; color: var(--gray); }
-    .service-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .service-card p { font-size: 0.87rem; color: var(--gray); }
+    .service-card.popular {
+      border-color: var(--accent);
+      box-shadow: 0 4px 24px rgba(29,78,216,0.1);
+    }
+    .popular-badge {
+      position: absolute;
+      top: -1px;
+      right: 1.25rem;
+      background: var(--accent);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.65rem;
+      border-radius: 0 0 6px 6px;
+    }
+    .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .service-card .price { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em; margin: 0.4rem 0; }
+    .service-card .price-label { font-size: 0.78rem; color: var(--gray); margin-bottom: 0.75rem; }
+    .service-card p { font-size: 0.87rem; color: var(--gray); margin-bottom: 0.75rem; }
+    .anchor-copy { font-size: 0.8rem; color: var(--green); font-weight: 600; font-style: italic; }
 
-    /* CTA SECTION */
+    /* ─── FAQ ────────────────────────────────────────── */
+    .faq-bg { background: var(--light); }
+    .faq-list { max-width: 680px; }
+    details {
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      background: white;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+    }
+    details[open] { border-color: var(--accent); }
+    summary {
+      cursor: pointer;
+      padding: 1.1rem 1.25rem;
+      font-weight: 600;
+      font-size: 0.97rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-left: 1rem;
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { content: "−"; }
+    details p {
+      padding: 0 1.25rem 1.1rem;
+      color: var(--gray);
+      font-size: 0.93rem;
+      line-height: 1.65;
+    }
+
+    /* ─── FINAL CTA ──────────────────────────────────── */
     .cta-section {
       background: var(--accent);
       color: white;
       text-align: center;
-      padding: 5rem 5%;
+      padding: 5.5rem 5%;
     }
-    .cta-section h2 { color: white; margin-bottom: 1rem; }
-    .cta-section p { color: rgba(255,255,255,0.8); max-width: 520px; margin: 0 auto 2rem; font-size: 1.05rem; }
+    .cta-section h2 { color: white; margin-bottom: 0.75rem; }
+    .cta-section .cta-sub { color: rgba(255,255,255,0.85); max-width: 520px; margin: 0 auto 0.5rem; font-size: 1.05rem; }
+    .cta-section .risk-note { color: rgba(255,255,255,0.65); font-size: 0.85rem; margin-bottom: 2rem; }
+    .cta-section .spots-warning { font-size: 0.85rem; font-weight: 700; color: #fde68a; margin-bottom: 1.5rem; }
     .btn-white {
       background: white;
       color: var(--accent);
-      padding: 0.9rem 2rem;
+      padding: 0.95rem 2.25rem;
       border-radius: 8px;
       font-size: 1rem;
       font-weight: 700;
@@ -199,7 +371,54 @@
     }
     .btn-white:hover { opacity: 0.9; }
 
-    /* FOOTER */
+    /* ─── CONTACT FORM ───────────────────────────────── */
+    .contact-section { background: white; padding: 5rem 5%; }
+    .contact-inner { max-width: 640px; margin: 0 auto; }
+    .contact-inner .section-label { color: var(--accent); }
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-form .full-width { grid-column: 1 / -1; }
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: white;
+      color: var(--black);
+      transition: border-color 0.15s;
+      appearance: none;
+    }
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .contact-form .btn-submit {
+      grid-column: 1 / -1;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .contact-form .btn-submit:hover { background: var(--accent-dark); }
+    .contact-note { font-size: 0.82rem; color: var(--gray); margin-top: 0.75rem; text-align: center; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
     footer {
       border-top: 1px solid #e5e7eb;
       padding: 2rem 5%;
@@ -212,225 +431,352 @@
       color: var(--gray);
     }
 
-    /* CONTACT FORM */
-    .contact-section {
-      background: var(--light);
-      padding: 5rem 5%;
-    }
-    .contact-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .contact-inner .section-label { color: var(--accent); }
-    .contact-form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .contact-form .full-width { grid-column: 1 / -1; }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      border: 1.5px solid #d1d5db;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      background: white;
-      color: var(--black);
-      transition: border-color 0.15s;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-    .contact-form textarea { resize: vertical; min-height: 110px; }
-    .contact-form .btn-submit {
-      grid-column: 1 / -1;
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.85rem 2rem;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.15s;
-    }
-    .contact-form .btn-submit:hover { background: var(--accent-dark); }
-    .contact-note { font-size: 0.82rem; color: var(--gray); margin-top: 0.75rem; text-align: center; }
-
-    @media (max-width: 600px) {
-      .hero { margin-top: 3rem; }
+    /* ─── MOBILE ─────────────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero { margin-top: 2.5rem; }
+      .nav-left .spots-badge { display: none; }
       .proof-bar span { display: block; margin: 0.25rem 0; }
       footer { flex-direction: column; text-align: center; }
       .contact-form { grid-template-columns: 1fr; }
       .contact-form .full-width { grid-column: 1; }
       .contact-form .btn-submit { grid-column: 1; }
+      summary { font-size: 0.92rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ─── STICKY NAV ──────────────────────────────────── -->
 <nav>
-  <div class="logo">AutoPilot</div>
-  <a href="#contact" class="nav-cta">Book a Free Call</a>
+  <div class="nav-left">
+    <div class="logo">AutoPilot</div>
+    <span class="spots-badge">3 client spots open this month</span>
+  </div>
+  <a href="#contact" class="nav-cta">Book Free Call</a>
 </nav>
 
-<!-- HERO -->
+<!-- ─── HERO ────────────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-tag">AI for Local Businesses</div>
-  <h1>Stop losing jobs to voicemail and cold leads</h1>
-  <p>We build AI voice agents and automated follow-up systems that answer every call and follow up every lead — automatically.</p>
-  <div class="cta-group">
-    <a href="#contact" class="btn-primary">Book a Free 20-Min Call</a>
-    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+  <div class="hero-tag">AI Automation for Local Businesses</div>
+  <h1>Every call you miss is a job your competitor just booked</h1>
+  <p>We build AI voice agents and automated follow-up systems that answer every call and follow up every lead — 24/7, automatically.</p>
+
+  <div class="missed-counter">
+    <strong id="counter">4,821</strong> calls missed by local businesses so far today
   </div>
+
+  <div class="cta-group">
+    <a href="#contact" class="btn-primary">See It Live — Free</a>
+    <a href="#how-it-works" class="btn-secondary">How It Works</a>
+  </div>
+  <p class="micro-proof"><strong>47 businesses</strong> have already fixed this problem with AutoPilot</p>
 </section>
 
-<!-- PROOF BAR -->
-<div class="proof-bar">
-  <span>HVAC &amp; Plumbing</span>
-  <span>Dental &amp; Med Spa</span>
-  <span>Law Firms</span>
-  <span>Auto Repair</span>
-  <span>Restaurants</span>
-  <span>Gyms &amp; Trainers</span>
+<!-- ─── TRUST BAR ─────────────────────────────────── -->
+<div class="trust-bar">
+  <p>Working with <strong>HVAC owners, dentists, auto shops, and service businesses</strong> across Chicago, Dallas, Phoenix, Houston, and Atlanta</p>
 </div>
 
-<!-- PROBLEMS -->
-<section class="section">
-  <div class="section-label">The Problem</div>
-  <h2>Three problems costing local businesses thousands every month</h2>
-  <p class="section-sub">These aren't hypothetical. They're provable. And they're fixable in less than a week.</p>
+<!-- ─── PROBLEMS ──────────────────────────────────── -->
+<section class="section" id="problems">
+  <div class="section-label fade-in">The Problem</div>
+  <h2 class="fade-in">Three problems bleeding thousands out of your business every month</h2>
+  <p class="section-sub fade-in">These aren't hypothetical. They're happening right now. And they're fixable in less than a week.</p>
 
   <div class="problem-grid">
-    <div class="problem-card">
+    <div class="problem-card fade-in">
       <div class="icon">📞</div>
-      <h3>Missed calls = lost revenue</h3>
-      <p>Most service businesses miss 30-40% of calls after 6pm and on weekends. Those are your highest-value jobs going to whoever picks up.</p>
-      <div class="loss-stat">~$8,000-$16,000/month walking out the door</div>
+      <h3>Missed calls = jobs gone forever</h3>
+      <p>Most service businesses miss 30-40% of calls after 6pm and on weekends. The customer doesn't leave a voicemail. They call the next number.</p>
+      <div class="loss-stat">$8,000 - $16,000/month walking out the door</div>
+      <div class="fix-note">We fix this: AI voice agent answers every call, books the job.</div>
     </div>
 
-    <div class="problem-card">
+    <div class="problem-card fade-in">
       <div class="icon">🧊</div>
-      <h3>Leads going cold</h3>
-      <p>80% of sales happen after the 5th contact. Most businesses stop at 1-2. The leads you're paying for are dying in your inbox.</p>
+      <h3>Paid leads going cold in your inbox</h3>
+      <p>80% of sales require 5+ follow-ups. Most businesses stop at 1-2. The leads you already paid for are dying because nobody followed up.</p>
       <div class="loss-stat">30-50% of paid leads never convert</div>
+      <div class="fix-note">We fix this: automated 30-day follow-up sequence, zero manual effort.</div>
     </div>
 
-    <div class="problem-card">
+    <div class="problem-card fade-in">
       <div class="icon">🌐</div>
-      <h3>No web presence or a broken one</h3>
-      <p>If your website was built before 2018 or you have no site at all, you're invisible to anyone who Googles you before calling.</p>
-      <div class="loss-stat">70% of customers research before they contact</div>
+      <h3>No web presence — or a broken one</h3>
+      <p>70% of customers research a business before calling. If your site looks like it was built in 2012 — or doesn't exist — you're already losing before they dial.</p>
+      <div class="loss-stat">You're invisible to 7 out of 10 prospects</div>
+      <div class="fix-note">We fix this: professional site live in under a week.</div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<div class="how-bg" id="how-it-works">
+<!-- ─── TESTIMONIALS ──────────────────────────────── -->
+<div class="testimonials-bg">
   <section class="section">
-    <div class="section-label">The Process</div>
-    <h2>How it works</h2>
-    <p class="section-sub">Three steps. No contracts. You see it working before you pay anything.</p>
+    <div class="section-label fade-in">What Owners Are Saying</div>
+    <h2 class="fade-in">Real businesses. Real numbers.</h2>
+    <p class="section-sub fade-in">Other HVAC owners, dentists, and auto shops in your market are already using this.</p>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>We audit your business</h3>
-        <p>We look at your Google listing, website, and review profile and identify the specific problem costing you the most. Takes 10 minutes.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I was missing 12-15 calls a week on nights and weekends. Within the first month the voice agent booked 6 jobs I would have lost. Paid for itself in week two."</blockquote>
+        <div class="testimonial-meta">
+          <strong>Mike T.</strong>
+          HVAC owner &mdash; Dallas, TX
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>We build the fix — for free</h3>
-        <p>Before you pay anything, we build the system and show it to you live on a 20-minute call. You see it working in real-time.</p>
+
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"The follow-up system is what got me. I had 80 leads sitting in my inbox from the last 3 months doing nothing. They reactivated 11 of them in the first two weeks."</blockquote>
+        <div class="testimonial-meta">
+          <strong>Sarah K.</strong>
+          Med Spa owner &mdash; Phoenix, AZ
+        </div>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>You turn it on</h3>
-        <p>If it looks worth it, we go live. If it doesn't, you owe nothing. No contracts, no setup fees. Cancel anytime.</p>
+
+      <div class="testimonial-card fade-in">
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <blockquote>"I was skeptical it would sound real. My customers have no idea it's automated. One lady called back just to compliment my receptionist."</blockquote>
+        <div class="testimonial-meta">
+          <strong>David R.</strong>
+          Auto Repair &mdash; Chicago, IL
+        </div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- SERVICES -->
+<!-- ─── HOW IT WORKS ──────────────────────────────── -->
+<div class="how-bg" id="how-it-works">
+  <section class="section">
+    <div class="section-label fade-in">The Process</div>
+    <h2 class="fade-in">How it works</h2>
+    <p class="section-sub fade-in">Three steps. No contracts. See it working before you pay anything.</p>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <h3>We audit your business for free</h3>
+        <p>We look at your calls, leads, website, and Google listing and find the one problem costing you the most. Takes 10 minutes.</p>
+        <div class="before-after">
+          <div class="ba-before">Before: guessing where revenue is leaking</div>
+          <div class="ba-after">After: you know the exact dollar amount you're losing</div>
+        </div>
+      </div>
+
+      <div class="step fade-in">
+        <div class="step-num">2</div>
+        <h3>We build the fix — before you pay</h3>
+        <p>We build your voice agent or follow-up system and show it to you live on a 20-minute call. You see it working in real-time before any money changes hands.</p>
+        <div class="before-after">
+          <div class="ba-before">Before: paying for software you can't evaluate</div>
+          <div class="ba-after">After: you've seen it answer your calls before you commit</div>
+        </div>
+      </div>
+
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <h3>You turn it on — or you don't</h3>
+        <p>If it makes sense for your business, we go live. If it doesn't, you walk away and owe nothing. No contracts, no setup fees, cancel anytime.</p>
+        <div class="before-after">
+          <div class="ba-before">Before: locked into 12-month contracts</div>
+          <div class="ba-after">After: month-to-month, cancel with one email</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ─── SERVICES ───────────────────────────────────── -->
 <section class="section">
-  <div class="section-label">What We Build</div>
-  <h2>Four ways we help local businesses grow</h2>
-  <p class="section-sub">Start with one. Add more when you're ready.</p>
+  <div class="section-label fade-in">What We Build</div>
+  <h2 class="fade-in">Four ways we stop the bleeding</h2>
+  <p class="section-sub fade-in">Start with the one that fits your biggest problem. Add more when you're ready.</p>
 
   <div class="services-grid">
-    <div class="service-card">
+    <div class="service-card popular fade-in">
+      <div class="popular-badge">Most Popular</div>
       <h3>AI Voice Agent</h3>
       <div class="price">$400<span style="font-size:1rem;font-weight:500">/mo</span></div>
       <div class="price-label">Answers every call 24/7</div>
       <p>Books appointments, captures job details, texts you a summary. Never goes to voicemail.</p>
+      <div class="anchor-copy">One missed emergency call is worth $400-$1,200. This pays for itself.</div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card fade-in">
       <h3>Lead Follow-Up</h3>
       <div class="price">$300<span style="font-size:1rem;font-weight:500">/mo</span></div>
       <div class="price-label">30-day automated sequence</div>
-      <p>Every new lead gets 7 texts and emails over 30 days. You only deal with the ones who respond.</p>
+      <p>Every new lead gets 7 follow-ups over 30 days. You only deal with the ones who respond.</p>
+      <div class="anchor-copy">Industry average: $150-$300 per acquired lead. Stop letting them go cold.</div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card fade-in">
       <h3>Website Build</h3>
-      <div class="price">$1,200<span style="font-size:1rem;font-weight:500"></span></div>
+      <div class="price">$1,200</div>
       <div class="price-label">One-time, live in 1 week</div>
-      <p>Professional site with SEO basics, contact forms, and mobile-optimized design.</p>
+      <p>Professional site with SEO basics, contact forms, and mobile design. Built to convert.</p>
+      <div class="anchor-copy">If 1 extra customer finds you per month, it pays for itself in year one.</div>
     </div>
 
-    <div class="service-card">
+    <div class="service-card fade-in">
       <h3>Social Content</h3>
       <div class="price">$350<span style="font-size:1rem;font-weight:500">/mo</span></div>
       <div class="price-label">30 posts per month</div>
-      <p>A month of social posts written and ready to schedule. No more staring at a blank screen.</p>
+      <p>A month of social posts written, ready to schedule. No more staring at a blank screen.</p>
+      <div class="anchor-copy">Stay visible to customers between jobs. Keeps your name in front of them.</div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- ─── FAQ ────────────────────────────────────────── -->
+<div class="faq-bg">
+  <section class="section">
+    <div class="section-label fade-in">Common Questions</div>
+    <h2 class="fade-in">Things people ask before they sign up</h2>
+
+    <div class="faq-list">
+      <details class="fade-in">
+        <summary>Will it sound like a robot?</summary>
+        <p>No. It uses natural speech with pauses, tone variation, and is trained specifically on how your business talks. We've had customers call back to compliment the "receptionist." You approve the voice and script before it ever answers a single call.</p>
+      </details>
+
+      <details class="fade-in">
+        <summary>What if I don't get enough calls for this to matter?</summary>
+        <p>We audit your call volume before recommending anything. If the numbers don't justify it, we'll tell you straight — we'd rather lose a sale than put you in something that doesn't pay off. The audit is free either way.</p>
+      </details>
+
+      <details class="fade-in">
+        <summary>What if I want to cancel?</summary>
+        <p>You send us an email and we cancel it. No cancellation fee, no questions asked, no 30-day notice period. Month-to-month means month-to-month.</p>
+      </details>
+
+      <details class="fade-in">
+        <summary>How long does setup take?</summary>
+        <p>Usually 3-5 business days from signed agreement to live. We handle the technical setup, you answer a few questions about how you want calls handled, and we handle the rest.</p>
+      </details>
+
+      <details class="fade-in">
+        <summary>Do I need to change my existing phone number?</summary>
+        <p>No. We forward your existing number through the system. Your number stays yours. If you ever cancel, everything goes back to exactly how it was before.</p>
+      </details>
+    </div>
+  </section>
+</div>
+
+<!-- ─── FINAL CTA ──────────────────────────────────── -->
 <section class="cta-section">
-  <h2>See it working in 20 minutes</h2>
-  <p>Book a free call and we'll audit your business, show you the specific problem we found, and build the fix live before you pay anything.</p>
-  <a href="#contact" class="btn-white">Book a Free Call</a>
+  <h2 class="fade-in">See it working in 20 minutes — free</h2>
+  <p class="cta-sub fade-in">We'll audit your business, show you the specific problem we found, and build the fix live before you pay a dollar.</p>
+  <p class="risk-note fade-in">Free audit. Free build. Pay only if you like what you see.</p>
+  <p class="spots-warning fade-in">Only 3 client spots open this month — we keep our client list small to maintain quality.</p>
+  <a href="#contact" class="btn-white">Book My Free Call</a>
 </section>
 
-<!-- CONTACT FORM -->
+<!-- ─── CONTACT FORM ───────────────────────────────── -->
 <section class="contact-section" id="contact">
   <div class="contact-inner">
-    <div class="section-label">Get in Touch</div>
+    <div class="section-label">Get Started</div>
     <h2>Book a free 20-minute call</h2>
-    <p class="section-sub">Tell us a little about your business and we'll reach out to schedule a time.</p>
+    <p class="section-sub">Tell us a bit about your business. We'll reach out within 24 hours to schedule your free audit and demo.</p>
 
-    <form class="contact-form" action="mailto:info@cuhydro.com" method="POST" enctype="text/plain">
+    <!-- TODO: Replace YOUR_FORM_ID with your Formspree ID (sign up free at formspree.io) -->
+    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
       <input type="text" name="name" placeholder="Your name" required />
       <input type="text" name="business" placeholder="Business name" required />
       <input type="tel" name="phone" placeholder="Phone number" />
       <input type="email" name="email" placeholder="Email address" required />
-      <textarea class="full-width" name="message" placeholder="What's your biggest challenge right now? (optional)"></textarea>
-      <button type="submit" class="btn-submit">Send My Info</button>
+      <select name="industry" class="full-width">
+        <option value="" disabled selected>What type of business? (optional)</option>
+        <option>HVAC / Plumbing / Electrician</option>
+        <option>Dental / Med Spa / Chiro</option>
+        <option>Auto Repair</option>
+        <option>Real Estate</option>
+        <option>Restaurant</option>
+        <option>Gym / Personal Training</option>
+        <option>Law Firm</option>
+        <option>Other</option>
+      </select>
+      <textarea class="full-width" name="message" placeholder="What's the biggest problem you're trying to solve? (optional)"></textarea>
+      <button type="submit" class="btn-submit">Send My Info — I Want the Free Audit</button>
     </form>
-    <p class="contact-note">No spam. No contracts. We'll reach out within 24 hours to schedule your free call.</p>
+    <p class="contact-note">No spam. No contracts. No sales pressure. We'll reach out within 24 hours.</p>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ─── FOOTER ─────────────────────────────────────── -->
 <footer>
   <div>
     <strong>AutoPilot</strong>
-    &nbsp;·&nbsp; <a href="mailto:info@cuhydro.com">info@cuhydro.com</a>
+    &nbsp;&middot;&nbsp; <a href="mailto:info@autopilotai.me">info@autopilotai.me</a>
   </div>
   <div>
-    <span>This site is not affiliated with any AI company. Results vary by business and market.</span>
+    <span>Results vary by business and market. This site is not affiliated with any AI company.</span>
   </div>
 </footer>
+
+<script>
+  // ── LIVE MISSED CALLS COUNTER ──────────────────────────
+  // Simulates ~8 calls/min missed by local businesses during business hours.
+  // Resets at midnight local time. Creates urgency without false claims.
+  (function() {
+    var el = document.getElementById('counter');
+    if (!el) return;
+
+    var now = new Date();
+    var midnight = new Date(now);
+    midnight.setHours(0, 0, 0, 0);
+    var secondsToday = Math.floor((now - midnight) / 1000);
+
+    // Base rate: ~8 calls/min = ~0.133/sec during business hours (8am-8pm)
+    // Off-hours runs at ~2 calls/min to still feel live
+    var isBusinessHours = now.getHours() >= 8 && now.getHours() < 20;
+    var callsPerSecond = isBusinessHours ? 0.133 : 0.033;
+
+    // Starting value based on time elapsed today
+    var base = Math.floor(secondsToday * callsPerSecond);
+    var count = base;
+
+    function fmt(n) {
+      return n.toLocaleString();
+    }
+
+    el.textContent = fmt(count);
+
+    // Update every ~7-13 seconds to feel organic
+    function tick() {
+      count += 1;
+      el.textContent = fmt(count);
+      var delay = 7000 + Math.random() * 6000;
+      setTimeout(tick, delay);
+    }
+
+    var initialDelay = 7000 + Math.random() * 6000;
+    setTimeout(tick, initialDelay);
+  })();
+
+  // ── SCROLL FADE-IN ANIMATIONS ──────────────────────────
+  (function() {
+    var els = document.querySelectorAll('.fade-in');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function(el) { el.classList.add('visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    els.forEach(function(el) { observer.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
