@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Local AI Automation — Voice Agents &amp; Lead Follow-Up for Local Businesses</title>
+  <title>Alex AI — Voice Agents &amp; Lead Follow-Up for Local Businesses</title>
   <meta name="description" content="We build AI voice agents and automated follow-up systems for local businesses. Answer every call. Follow up every lead. Book more jobs." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -212,10 +212,63 @@
       color: var(--gray);
     }
 
+    /* CONTACT FORM */
+    .contact-section {
+      background: var(--light);
+      padding: 5rem 5%;
+    }
+    .contact-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-inner .section-label { color: var(--accent); }
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact-form .full-width { grid-column: 1 / -1; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: white;
+      color: var(--black);
+      transition: border-color 0.15s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .contact-form .btn-submit {
+      grid-column: 1 / -1;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .contact-form .btn-submit:hover { background: var(--accent-dark); }
+    .contact-note { font-size: 0.82rem; color: var(--gray); margin-top: 0.75rem; text-align: center; }
+
     @media (max-width: 600px) {
       .hero { margin-top: 3rem; }
       .proof-bar span { display: block; margin: 0.25rem 0; }
       footer { flex-direction: column; text-align: center; }
+      .contact-form { grid-template-columns: 1fr; }
+      .contact-form .full-width { grid-column: 1; }
+      .contact-form .btn-submit { grid-column: 1; }
     }
   </style>
 </head>
@@ -223,9 +276,8 @@
 
 <!-- NAV -->
 <nav>
-  <div class="logo">LocalAI</div>
-  <!-- REPLACE: Update href to your Calendly link -->
-  <a href="https://calendly.com/YOURLINK" class="nav-cta">Book a Free Call</a>
+  <div class="logo">Alex AI</div>
+  <a href="#contact" class="nav-cta">Book a Free Call</a>
 </nav>
 
 <!-- HERO -->
@@ -234,8 +286,7 @@
   <h1>Stop losing jobs to voicemail and cold leads</h1>
   <p>We build AI voice agents and automated follow-up systems that answer every call and follow up every lead — automatically.</p>
   <div class="cta-group">
-    <!-- REPLACE: Update href to your Calendly link -->
-    <a href="https://calendly.com/YOURLINK" class="btn-primary">Book a Free 20-Min Call</a>
+    <a href="#contact" class="btn-primary">Book a Free 20-Min Call</a>
     <a href="#how-it-works" class="btn-secondary">See How It Works</a>
   </div>
 </section>
@@ -348,16 +399,33 @@
 <section class="cta-section">
   <h2>See it working in 20 minutes</h2>
   <p>Book a free call and we'll audit your business, show you the specific problem we found, and build the fix live before you pay anything.</p>
-  <!-- REPLACE: Update href to your Calendly link -->
-  <a href="https://calendly.com/YOURLINK" class="btn-white">Book a Free Call</a>
+  <a href="#contact" class="btn-white">Book a Free Call</a>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="section-label">Get in Touch</div>
+    <h2>Book a free 20-minute call</h2>
+    <p class="section-sub">Tell us a little about your business and we'll reach out to schedule a time.</p>
+
+    <form class="contact-form" action="mailto:info@cuhydro.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your name" required />
+      <input type="text" name="business" placeholder="Business name" required />
+      <input type="tel" name="phone" placeholder="Phone number" />
+      <input type="email" name="email" placeholder="Email address" required />
+      <textarea class="full-width" name="message" placeholder="What's your biggest challenge right now? (optional)"></textarea>
+      <button type="submit" class="btn-submit">Send My Info</button>
+    </form>
+    <p class="contact-note">No spam. No contracts. We'll reach out within 24 hours to schedule your free call.</p>
+  </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div>
-    <strong>LocalAI</strong>
-    <!-- REPLACE: Update email to your business email -->
-    &nbsp;·&nbsp; <a href="mailto:alex@YOURDOMAIN.com">alex@YOURDOMAIN.com</a>
+    <strong>Alex AI</strong>
+    &nbsp;·&nbsp; <a href="mailto:info@cuhydro.com">info@cuhydro.com</a>
   </div>
   <div>
     <span>This site is not affiliated with any AI company. Results vary by business and market.</span>
