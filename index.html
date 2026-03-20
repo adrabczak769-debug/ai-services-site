@@ -682,8 +682,7 @@
     <h2>Book a free 20-minute call</h2>
     <p class="section-sub">Tell us a bit about your business. We'll reach out within 24 hours to schedule your free audit and demo.</p>
 
-    <!-- TODO: Replace YOUR_FORM_ID with your Formspree ID (sign up free at formspree.io) -->
-    <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <form class="contact-form" action="https://1ea916b4fdf1556d-50-171-95-234.serveousercontent.com/submit" method="POST">
       <input type="text" name="name" placeholder="Your name" required />
       <input type="text" name="business" placeholder="Business name" required />
       <input type="tel" name="phone" placeholder="Phone number" />
@@ -755,6 +754,19 @@
 
     var initialDelay = 7000 + Math.random() * 6000;
     setTimeout(tick, initialDelay);
+  })();
+
+  // ── FORM SUBMISSION SUCCESS BANNER ─────────────────────
+  (function() {
+    if (window.location.search.indexOf('submitted=1') !== -1) {
+      var banner = document.createElement('div');
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#059669;color:white;text-align:center;padding:1rem;font-weight:600;font-size:1rem;z-index:9999;';
+      banner.textContent = "Got it. We'll reach out within 24 hours to schedule your free audit.";
+      document.body.prepend(banner);
+      setTimeout(function() { banner.remove(); }, 8000);
+      // clean up URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
   })();
 
   // ── SCROLL FADE-IN ANIMATIONS ──────────────────────────
